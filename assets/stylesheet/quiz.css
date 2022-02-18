@@ -1,0 +1,18 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(/assets/images/concert.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+#box-container {
+  min-height: 600px;
+  max-width: 600px;
+  border: 2px solid #000;
+}
