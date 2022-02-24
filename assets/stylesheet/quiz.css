@@ -5,14 +5,35 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-image: url(/assets/images/concert.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 0.8;
 }
 
 #box-container {
-  min-height: 600px;
-  max-width: 600px;
-  border: 2px solid #000;
+  min-height: 700px;
+  max-width: 900px;
 }
+
+#unique-footer {
+  flex: 0.2;
+}
+
+/* footer ul.footerList {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin-top: 10px;
+}
+
+footer ul.footerList li:first-child {
+  margin-top: 10px;
+} */
