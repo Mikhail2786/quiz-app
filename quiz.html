@@ -24,8 +24,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">
-            <!--width and height for the logo will be removed and placed on css style sheet-->
-            <img src="./assets/images/logo1.png" alt="Logo" width="80" height="60">
+            <img src="./assets/images/logo1.png" alt="Logo" class="nav-logo">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,37 +55,41 @@
             <!-- width will be used in css style sheet and removed from html-->
             <h1><img src="/assets/images/logo-grey-radio1.png" alt="logo" id="logo-image" style="width: 100%;"></h1>
           </div>
-          <div class="row">
-            <p class="col text-center align-self-center" id="question">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ipsam consequatur magnam ipsa libero voluptas debitis architecto earum neque? Laboriosam!
-            </p>
-          </div>
-          <div>
-            <div class="container overflow-hidden">
-              <div class="row g-3 ">
-                <div class="col-md-6" id="choice-a">
-                  <div class="p-3 border bg-danger">
-                    A
+
+          <section class="main-section" id="quiz-section">
+            <div class="row">
+              <p class="col text-center align-self-center" id="question">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ipsam consequatur magnam ipsa libero voluptas debitis architecto earum neque? Laboriosam!
+              </p>
+            </div>
+            <div>
+              <div class="container overflow-hidden">
+                <div class="row g-3 ">
+                  <div class="col-md-6" id="choice-a">
+                    <div class="p-3 border answer">
+                      A
+                    </div>
+                  </div>
+                  <div class="col-md-6" id="choice-b">
+                    <div class="p-3 border answer">
+                      B
+                    </div>
+                  </div>
+                  <div class="col-md-6" id="choice-c">
+                    <div class="p-3 border answer">
+                      C
+                    </div>
+                  </div>
+                  <div class="col-md-6" id="choice-d">
+                    <div class="p-3 border answer">
+                      D
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6" id="choice-b">
-                  <div class="p-3 border bg-warning">
-                    B
-                  </div>
-                </div>
-                <div class="col-md-6" id="choice-c">
-                  <div class="p-3 border bg-primary">
-                    C
-                  </div>
-                </div>
-                <div class="col-md-6" id="choice-d">
-                  <div class="p-3 border bg-success">
-                    D
-                  </div>
-                </div>
-              </div>
-            </div>  
-          </div>
+              </div>  
+            </div>
+          </section>
+
         </div>
       </div> 
       
