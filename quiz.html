@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="./assets/stylesheet/quiz.css">
     <title>Hip Hop Quiz</title>
   </head>
-  <>
-
+  <body>
+    
     <!--Header-->
     <header>
 
@@ -46,17 +46,17 @@
     </header>
     <!--End of Header-->
 
-    <main class="content">
+    <main class="container-md">
+      <section>
+        <div class="container" id="box-container">
 
-      <div class="container" id="box-container">
-        <div class="row justify-content-center">
-          <!-- width will be used in css style sheet and removed from html-->
-          <div id="image-container" style="width: 70%">
-            <!-- width will be used in css style sheet and removed from html-->
-            <h1><img src="/assets/images/logo-grey-radio1.png" alt="logo" id="logo-image" style="width: 100%;"></h1>
+          <div class="row justify-content-center">
+            <div class="col-8" id="image">
+              <h1><img src="./assets/images/logo-grey-radio1.png" alt="logo" class="img-fluid"></h1>
+            </div>
           </div>
 
-          <section class="main-section" id="quiz-section">
+          <section class="main-section pt-4 pb-4" id="quiz-section">
             <div class="row">
               <p class="col text-center align-self-center" id="question">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ipsam consequatur magnam ipsa libero voluptas debitis architecto earum neque? Laboriosam!
@@ -86,20 +86,22 @@
                     </div>
                   </div>
                 </div>
+                <div class="row justify-content-center mt-4">
+                  <button type="button" class="btn btn-warning col-4"> Next</button>
+                </div>
               </div>  
             </div>
           </section>
 
-        </div>
-      </div> 
-      
+        </div> 
+      </section>
     </main>
 
     <!--Footer-->
     <footer class="navbar-dark" id="unique-footer">
       <div class="container text-center">
         <div class="row justify-content-center">
-          <div col 4>
+          <div class="col-4">
             <ul class="navbar-nav footer-list">
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="bi bi-github" id="github"></i><span class="footer-text">Github</span></a>
