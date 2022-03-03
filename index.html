@@ -48,37 +48,38 @@
       <!--End of Header-->
 
       <!--Main content-->
-      <main class="content">
-
+      <main class="container-md">
         <section>
-          <div class="container-md" id="box-container">
+          <div class="container-fluid" id="box-container">
+  
             <div class="row justify-content-center">
-              <!-- width will be used in css style sheet and removed from htnk-->
-              <div id="image" style="width: 70%">
-                <!-- width will be used in css style sheet and removed from htnk-->
-                <h1><img src="/assets/images/logo-grey-radio1.png" alt="logo" width="100%"></h1>
+              <div class="col-8" id="image">
+                <h1><img src="./assets/images/logo-grey-radio1.png" alt="logo" class="img-fluid"></h1>
               </div>
+            </div>
 
-              <section>
-                <div class="col-sm-8 mx-auto text-center main-section" id="uname-section">
+            <div class="container-md">
+              <div class="row justify-content-center">  
+                <div class="col-10 text-center main-section py-2 px-5" id="uname-section">
                   <form action="quiz.html" method="get">
-                    <div class="row mb-3">
-                      <label for="username" class="col-6 col-form-label"><spam id="user-text">USERNAME:</spam></label>
-                      <div class="col-6">
-                        <input type="text" class="form-control" id="username" placeholder="e.g Rambo02">
+                    <div class="row mb-3 g-2">
+                      <div class="col-md-6">
+                        <label for="username" class="col-form-label"><spam id="user-text">USERNAME:</spam></label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control justify-content-center" id="username" placeholder="e.g Rambo02">
                       </div>
                       <div class="col-12">
-                        <button type="submit" class="btn" id="play-btn">Play</button>
+                        <button type="submit" class="btn btn-warning" id="play-btn">Play</button>
                       </div>
                     </div>
                   </form>
                 </div>
-              </section>
-
+              </div>
             </div>
+            
           </div>
         </section>
-        
       </main>
       <!--End of main content-->
 
