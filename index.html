@@ -22,19 +22,13 @@
       <header>
 
         <!--navigation bar-->
-        <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="main-nav">
           <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
               <img src="./assets/images/logo-grey-radio1.png" alt="Logo" class="nav-logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div id="navbarNav">
               <ul class="navbar-nav ms-auto text-center">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">How To Play</a>
                 </li>
@@ -49,7 +43,7 @@
 
       <!--Main content-->
       <main class="container-md">
-        <section>
+        <section id="home">
           <div class="container-fluid" id="box-container">
   
             <div class="row justify-content-center">
@@ -78,6 +72,80 @@
               </div>
             </div>
             
+          </div>
+        </section>
+
+        <section id="quiz-section" class="hidden">
+          <div class="container" id="box-container">
+  
+            <div class="row justify-content-center">
+              <div class="col-8" id="image">
+                <h1><img src="./assets/images/logo-grey-radio1.png" alt="logo" class="img-fluid"></h1>
+              </div>
+            </div>
+  
+            <div class="main-section pt-4 pb-4" id="quiz-section">
+              <div class="row">
+                <p class="col text-center align-self-center" id="question">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ipsam consequatur magnam ipsa libero voluptas debitis architecto earum neque? Laboriosam!
+                </p>
+              </div>
+              <div>
+                <div class="container overflow-hidden">
+                  <div class="row g-3 ">
+                    <div class="col-md-6" id="choice-a">
+                      <div class="p-3 border answer">
+                        A
+                      </div>
+                    </div>
+                    <div class="col-md-6" id="choice-b">
+                      <div class="p-3 border answer">
+                        B
+                      </div>
+                    </div>
+                    <div class="col-md-6" id="choice-c">
+                      <div class="p-3 border answer">
+                        C
+                      </div>
+                    </div>
+                    <div class="col-md-6" id="choice-d">
+                      <div class="p-3 border answer">
+                        D
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center mt-4">
+                    <button type="button" class="btn btn-warning col-4"> Next</button>
+                  </div>
+                </div>  
+              </div>
+            </div>
+  
+          </div> 
+        </section>
+
+        <section id="results" class="hidden">
+          <div class="container-fluid" id="box-container">
+  
+            <div class="row justify-content-center">
+              <div class="col-8" id="image">
+                <h1><img src="./assets/images/logo-grey-radio1.png" alt="logo" class="img-fluid"></h1>
+              </div>
+            </div>
+        
+            <div>
+              <div class="row main-section" id="score">
+                <div class="row text-center">
+                  <div class="col-lg-12 ps-4">
+                    <h2 id="how-to-play">Result</h2>
+                    <p>
+                    </p>
+                    <button type="submit" class="btn btn-warning" id="play-btn">Home</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
           </div>
         </section>
       </main>
