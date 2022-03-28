@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sedgwick+Ave&display=swap");
+
 * {
   margin: 0px;
   padding: 0px;
@@ -5,22 +7,32 @@
 }
 
 body {
+  font-family: "Sedgwick Ave", cursive;
+  color: #e1b13c;
   display: flex;
   flex-direction: column;
-  background-image: url(/assets/images/concert.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-color: #141414d3;
   min-height: 100vh;
 }
 
-.content {
-  flex: 0.8;
+/* header */
+.nav-logo {
+  width: 110px;
+  height: 90px;
 }
 
-#box-container {
+/* main */
+.box-container {
   min-height: 700px;
   max-width: 900px;
+}
+
+.main-section {
+  border: 2px solid #e1b13c;
+  background-color: #000;
+  opacity: 0.8;
+  min-height: 100px;
+  min-width: 400px;
 }
 
 #unique-footer {
@@ -33,7 +45,6 @@ body {
   list-style-type: none;
   margin-top: 10px;
 }
-
 footer ul.footerList li:first-child {
   margin-top: 10px;
 } */
