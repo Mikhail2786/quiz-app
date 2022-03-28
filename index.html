@@ -21,30 +21,50 @@
       <!--Header-->
       <header>
 
-        <!--navigation bar-->
         <nav class="navbar navbar-expand-lg navbar-dark" id="main-nav">
-          <div class="container-fluid">
+          <div class="container">
             <a class="navbar-brand" href="index.html">
               <img src="./assets/images/logo-grey-radio1.png" alt="Logo" class="nav-logo">
             </a>
-            <div id="navbarNav">
-              <ul class="navbar-nav ms-auto text-center">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">How To Play</a>
-                </li>
-              </ul>
+
+        <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Launch demo modal
+            </button>
+
+        <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"     aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">How to</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p class="rules">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, debitis eveniet aperiam cumque facere voluptatum a natus voluptatem assumenda explicabo dolore repellat nemo rem minus tempora, et ipsum pariatur nostrum.
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum officiis natus tempora itaque, ducimus placeat ipsa officia architecto velit! Omnis libero adipisci eaque quas ex eius ea! Excepturi, dolorum ex.
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum soluta, odio vero atque eaque eligendi, exercitationem perferendis quidem eius quisquam debitis mollitia dolor maxime fugiat nisi odit nam, in aliquid.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning" id="play-btn">Play Quiz</button>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
         </nav>
-        <!--End of navigation bar-->
-
       </header>
       <!--End of Header-->
 
       <!--Main content-->
       <main class="container-md">
         <section id="home">
-          <div class="container-fluid" id="box-container">
+          <div class="container-fluid box-container"
+          ">
   
             <div class="row justify-content-center">
               <div class="col-8" id="image">
@@ -76,7 +96,7 @@
         </section>
 
         <section id="quiz-section" class="hidden">
-          <div class="container" id="box-container">
+          <div class="container box-container">
   
             <div class="row justify-content-center">
               <div class="col-8" id="image">
@@ -125,7 +145,7 @@
         </section>
 
         <section id="results" class="hidden">
-          <div class="container-fluid" id="box-container">
+          <div class="container-fluid box-container">
   
             <div class="row justify-content-center">
               <div class="col-8" id="image">
