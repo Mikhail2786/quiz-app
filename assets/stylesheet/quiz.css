@@ -22,6 +22,10 @@ body {
 }
 
 /* main */
+.hidden {
+  display: none;
+}
+
 .box-container {
   min-height: 700px;
   max-width: 900px;
@@ -35,16 +39,9 @@ body {
   min-width: 400px;
 }
 
-#unique-footer {
-  flex: 0.2;
+/* footer */
+#unique-footer .nav-link:hover {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #e1b13c;
 }
-
-/* footer ul.footerList {
-  display: flex;
-  justify-content: center;
-  list-style-type: none;
-  margin-top: 10px;
-}
-footer ul.footerList li:first-child {
-  margin-top: 10px;
-} */
