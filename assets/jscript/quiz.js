@@ -116,3 +116,10 @@ const playQuiz = () => {
   results.classList.add('hidden')
   randomGenerator()
 }
+
+// When called hides the home and quiz section and shows the result section in the browser.
+const getResults = () => {
+  home.classList.add('hidden')
+  quiz.classList.add('hidden')
+  reults.classList.remove('hidden')
+}
