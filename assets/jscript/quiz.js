@@ -11,6 +11,8 @@ const questionBoard = document.getElementById("question");
 const usersAnswer = document.querySelectorAll(".answer");
 
 let selectedQuestions = [];
+const alphabet = ["A", "B", "C", "D"];
+
 
 //quiz questions, choice of answers and correct answer in an array of objects
 const questions = [
@@ -95,3 +97,14 @@ const getRandomObject = (arr) => {
   selectedQuestions.push(random);
   return arr[random]
 };
+
+//renders the selected array and questions in the correct section of the quiz board.
+const randomGenerator = () => {
+  console.log("Click")
+  const data = getRandomObject(questions)
+  console.log(data)
+  questionBoard.textContent = data.question;
+  usersAnswer.forEach((answer, index) => {
+    answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
+  })
+}
