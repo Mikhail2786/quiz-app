@@ -79,9 +79,9 @@ const questions = [
 
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
-  home.classList.remove('hidden')
-  quiz.classList.add('hidden')
-  results.classList.add('hidden')
+  home.classList.remove('hidden');
+  quiz.classList.add('hidden');
+  results.classList.add('hidden');
 
 }
 
@@ -95,16 +95,24 @@ const getRandomObject = (arr) => {
     getRandomObject(arr);
   }
   selectedQuestions.push(random);
-  return arr[random]
-};
+  return arr[random];
+}
 
 //renders the selected array and questions in the correct section of the quiz board.
 const randomGenerator = () => {
-  console.log("Click")
-  const data = getRandomObject(questions)
-  console.log(data)
+  console.log("Click");
+  const data = getRandomObject(questions);
+  console.log(data);
   questionBoard.textContent = data.question;
   usersAnswer.forEach((answer, index) => {
     answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
-  })
+  });
+}
+
+// When called hides the home and results section and shows the quiz section in the browser.
+const playQuiz = () => {
+  home.classList.add('hidden')
+  quiz.classList.remove('hidden')
+  results.classList.add('hidden')
+  randomGenerator()
 }
