@@ -10,6 +10,7 @@ const homeBtn = document.querySelectorAll(".home-btn");
 const questionBoard = document.getElementById("question");
 const usersAnswer = document.querySelectorAll(".answer");
 
+let selectedQuestions = [];
 
 //quiz questions, choice of answers and correct answer in an array of objects
 const questions = [
@@ -81,3 +82,16 @@ const startGame = () => {
   results.classList.add('hidden')
 
 }
+
+//creates random index between 0 and the length of any array passed into it
+const getRandomIndex = arr => Math.floor(Math.random() * arr.length);
+
+//uses getRandomIndex to generate select a random object from and array. Also checks to see if the random object has been selected, if not, pushes the question to the empty selectedQuestions array and if selected, loops through its own function with a recursion by calling itself until it finds a question that has not already been pushed to the selectedQuestions array.
+const getRandomObject = (arr) => {
+  const random = getRandomIndex(arr);
+  if (selectedQuestions.includes(random)) {
+    getRandomObject(arr);
+  }
+  selectedQuestions.push(random);
+  return arr[random]
+};
