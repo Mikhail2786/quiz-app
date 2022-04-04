@@ -72,5 +72,12 @@ const questions = [
     choices: ["Ney York", "London", "Paris", "Chicago"],
     answer: 3
   }
-]
+];
 
+// When called hides the quiz and results section and shows the home section in the browser.
+const startGame = () => {
+  home.classList.remove('hidden')
+  quiz.classList.add('hidden')
+  results.classList.add('hidden')
+
+}
