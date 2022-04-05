@@ -123,3 +123,15 @@ const getResults = () => {
   quiz.classList.add('hidden')
   reults.classList.remove('hidden')
 }
+
+// This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
+const displaySection = (btnType) => {
+  if (btnType === "play") {
+    playQuiz()
+    console.log("show quiz")
+  } else if (btnType === "next") {
+    console.log("next")
+  } else {
+    console.log("result")
+  }
+}
