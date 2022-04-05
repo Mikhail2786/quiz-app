@@ -135,3 +135,18 @@ const displaySection = (btnType) => {
     console.log("result")
   }
 }
+
+// Event listeners that calls the respected functions when triggered. 
+playBtn.addEventListener("click", function() {
+  displaySection("play")
+})
+
+quizBtn.addEventListener("click", function() {
+  displaySection("quiz")
+})
+
+for (btn of homeBtn) {
+  btn.addEventListener("click", function() {
+    displaySection("result")
+  })
+}
