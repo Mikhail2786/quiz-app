@@ -75,19 +75,17 @@
             <div class="container-md">
               <div class="row justify-content-center">  
                 <div class="col-10 text-center main-section py-2 px-5" id="uname-section">
-                  <form action="quiz.html" method="get">
-                    <div class="row mb-3 g-2">
-                      <div class="col-md-6">
-                        <label for="username" class="col-form-label"><span id="user-text">USERNAME:</span></label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" class="form-control justify-content-center" id="username" placeholder="e.g Rambo02">
-                      </div>
+                  <div class="row mb-3 g-2">
+                    <div class="col-md-6">
+                      <label for="username" class="col-form-label"><span id="user-text">USERNAME:</span></label>
                     </div>
-                    <div class="row justify-content-center mt-4">
-                      <button type="button" class="btn play-btn col-4">Play</button>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control justify-content-center" id="username" placeholder="e.g Rambo02" requuired>
                     </div>
-                  </form>
+                  </div>
+                  <div class="row justify-content-center mt-4">
+                    <button type="button" class="btn play-btn col-4">Play</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,25 +111,25 @@
               <div>
                 <div class="container overflow-hidden">
                   <div class="row g-3 ">
-                    <div class="col-md-6 choices" id="choice-a">
-                      <p class="p-3 border answer">
+                    <div class="col-md-6 choices" id="choice-a" onclick="onAnwerSelected(0)">
+                      <div class="p-3 answer">
                         A
-                      </p>
+                      </div>
                     </div>
-                    <div class="col-md-6 choices" id="choice-b">
-                      <p class="p-3 border answer">
+                    <div class="col-md-6 choices" id="choice-b" onclick="onAnwerSelected(1)">
+                      <div class="p-3 answer">
                         B
-                      </p>
+                      </div>
                     </div>
-                    <div class="col-md-6 choices" id="choice-c">
-                      <p class="p-3 border answer">
+                    <div class="col-md-6 choices" id="choice-c" onclick="onAnwerSelected(2)">
+                      <div class="p-3 answer">
                         C
-                      </p>
+                      </div>
                     </div>
-                    <div class="col-md-6 choices" id="choice-d">
-                      <p class="p-3 border answer">
+                    <div class="col-md-6 choices" id="choice-d" onclick="onAnwerSelected(3)">
+                      <div class="p-3 answer">
                         D
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <div class="row justify-content-center mt-4">

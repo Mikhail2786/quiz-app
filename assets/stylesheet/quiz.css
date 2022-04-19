@@ -22,8 +22,12 @@ body {
 }
 
 /* main */
-.hidden {
+/* .hidden {
   display: none;
+} */
+
+.btn {
+  background-color: #e1b13c;
 }
 
 .box-container {
@@ -38,6 +42,27 @@ body {
   min-height: 100px;
   min-width: 400px;
 }
+
+/* questions board */
+.answer {
+  border: solid 1px white;
+  border-radius: 10px;
+  background-color: #e1b13c;
+  color: black;
+}
+
+.wrong {
+  background-color: red;
+}
+
+.correct {
+  background-color: green;
+}
+
+#quiz-board {
+  padding: 20px;
+}
+
 
 /* footer */
 #unique-footer .nav-link:hover {

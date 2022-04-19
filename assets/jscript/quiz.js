@@ -3,12 +3,15 @@ const userName = document.getElementById("username")
 const home = document.getElementById("home");
 const quiz = document.getElementById("quiz");
 const results = document.getElementById("resultsBoard");
+const divChoice = document.querySelectorAll("div.choices")
 const playBtn = document.querySelector(".play-btn");
 const quizBtn = document.querySelector(".next-btn");
 const homeBtn = document.querySelectorAll(".home-btn");
 
 const questionBoard = document.getElementById("question");
 const usersAnswer = document.querySelectorAll(".answer");
+let currentUserAnswer = null;
+let currentCorrectAnswer = null;
 
 let selectedQuestions = [];
 const alphabet = ["A", "B", "C", "D"];
@@ -77,6 +80,7 @@ const questions = [
   }
 ];
 
+
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
   home.classList.remove('hidden');
@@ -104,17 +108,39 @@ const randomGenerator = () => {
   const data = getRandomObject(questions);
   console.log(data);
   questionBoard.textContent = data.question;
+  currentCorrectAnswer = data.answer;
   usersAnswer.forEach((answer, index) => {
     answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
   });
+
+  currentUserAnswer = null;
 }
 
+//checks to if the answer selected in correct
+const onAnwerSelected = (selectedAnswer) => {
+  currentUserAnswer = selectedAnswer;
+  const isCorrect = currentUserAnswer === currentCorrectAnswer;
+  const letterSelected = alphabet[selectedAnswer].toLowerCase();
+  const divToUpdate = document.getElementById(`choice-${letterSelected}`)
+  console.log(divToUpdate.childNodes)
+  console.log(divToUpdate.firstChild.innerHTML)
+  console.log(letterSelected);
+  if (currentUserAnswer === currentCorrectAnswer) {
+    console.log("correct")
+    divToUpdate.childNodes[1].classList.toggle('correct')
+  } else {
+    divToUpdate.childNodes[1].classList.toggle('wrong')
+  }
+}
+
+// create function that checks if a question has been answered before moving to the next question
 // When called hides the home and results section and shows the quiz section in the browser.
 const playQuiz = () => {
-  home.classList.add('hidden')
-  quiz.classList.remove('hidden')
-  results.classList.add('hidden')
-  randomGenerator()
+  home.classList.add('hidden');
+  quiz.classList.remove('hidden');
+  results.classList.add('hidden');
+  // validateUsername();
+  randomGenerator();  
 }
 
 // When called hides the home and quiz section and shows the result section in the browser.
@@ -137,13 +163,9 @@ const displaySection = (btnType) => {
 }
 
 // Event listeners that calls the respected functions when triggered. 
-playBtn.addEventListener("click", function() {
-  displaySection("play")
-})
+playBtn.addEventListener("click", () => displaySection("play"));
 
-quizBtn.addEventListener("click", function() {
-  displaySection("quiz")
-})
+quizBtn.addEventListener("click", () => displaySection("quiz"))
 
 for (btn of homeBtn) {
   btn.addEventListener("click", function() {
