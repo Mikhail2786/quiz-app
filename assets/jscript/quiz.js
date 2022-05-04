@@ -1,9 +1,8 @@
 // declaring global variables by targeting sections and button
-const userName = document.getElementById("username")
 const home = document.getElementById("home");
 const quiz = document.getElementById("quiz");
 const results = document.getElementById("resultsBoard");
-const divChoice = document.querySelectorAll("div.choices")
+const divChoices = document.querySelectorAll("div.choices")
 const playBtn = document.querySelector(".play-btn");
 const quizBtn = document.querySelector(".next-btn");
 const homeBtn = document.querySelectorAll(".home-btn");
@@ -16,7 +15,7 @@ let currentCorrectAnswer = null;
 let selectedQuestions = [];
 const alphabet = ["A", "B", "C", "D"];
 
-
+//===================================Questions data bank================================================
 //quiz questions, choice of answers and correct answer in an array of objects
 const questions = [
   {
@@ -86,7 +85,6 @@ const startGame = () => {
   home.classList.remove('hidden');
   quiz.classList.add('hidden');
   results.classList.add('hidden');
-
 }
 
 //creates random index between 0 and the length of any array passed into it
@@ -104,7 +102,6 @@ const getRandomObject = (arr) => {
 
 //renders the selected array and questions in the correct section of the quiz board.
 const randomGenerator = () => {
-  console.log("Click");
   const data = getRandomObject(questions);
   console.log(data);
   questionBoard.textContent = data.question;
@@ -112,24 +109,39 @@ const randomGenerator = () => {
   usersAnswer.forEach((answer, index) => {
     answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
   });
-
   currentUserAnswer = null;
+  clearAll()
 }
 
-//checks to if the answer selected in correct
-const onAnwerSelected = (selectedAnswer) => {
-  currentUserAnswer = selectedAnswer;
+//checks to see if the answer selected is correct and renders the colour green or red
+const onAnswerSelected = (e, selectedIndex) => {
+  console.log("***", e)
+  currentUserAnswer = selectedIndex ;
   const isCorrect = currentUserAnswer === currentCorrectAnswer;
-  const letterSelected = alphabet[selectedAnswer].toLowerCase();
-  const divToUpdate = document.getElementById(`choice-${letterSelected}`)
-  console.log(divToUpdate.childNodes)
-  console.log(divToUpdate.firstChild.innerHTML)
-  console.log(letterSelected);
-  if (currentUserAnswer === currentCorrectAnswer) {
+  if (isCorrect) {
     console.log("correct")
-    divToUpdate.childNodes[1].classList.toggle('correct')
+    e.target.classList.toggle('correct')
   } else {
-    divToUpdate.childNodes[1].classList.toggle('wrong')
+    e.target.classList.toggle('wrong')
+  }
+}
+//div choices = [element, element, element, element,...]
+for (let index = 0; index < divChoices.length; index++) {
+  const divChoice = divChoices[index];
+  console.log(index, divChoice)
+  divChoice.addEventListener("click", (e) => onAnswerSelected(e, index))
+}
+
+const resetAnswersOnDiv = (div) => {
+  div.classList.remove('correct')
+  div.classList.remove('wrong')
+}
+
+const clearAll = () => {
+  console.log("hi")
+  for (let index = 0; index < divChoices.length; index++) {
+    const divChoice = divChoices[index];
+    resetAnswersOnDiv(divChoice.children[0])
   }
 }
 
@@ -147,7 +159,7 @@ const playQuiz = () => {
 const getResults = () => {
   home.classList.add('hidden')
   quiz.classList.add('hidden')
-  reults.classList.remove('hidden')
+  results.classList.remove('hidden')
 }
 
 // This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
