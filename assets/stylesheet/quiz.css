@@ -24,7 +24,7 @@ body {
 /* main */
 /* .hidden {
   display: none;
-} */
+}  */
 
 .btn {
   background-color: #e1b13c;
@@ -44,18 +44,28 @@ body {
 }
 
 /* questions board */
-.answer {
+
+button.choices{
   border: solid 1px white;
   border-radius: 10px;
   background-color: #e1b13c;
-  color: black;
+  width: 100%;
 }
 
-.wrong {
+.answer {
+  color: black;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin: 1rem 0rem;
+
+}
+
+button.wrong {
   background-color: red;
 }
 
-.correct {
+button.correct {
   background-color: green;
 }
 

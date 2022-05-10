@@ -2,9 +2,9 @@
 const home = document.getElementById("home");
 const quiz = document.getElementById("quiz");
 const results = document.getElementById("resultsBoard");
-const btnChoices = document.querySelectorAll("button.choices")
+const divChoices = document.querySelectorAll("div.choices")
 const playBtn = document.querySelector(".play-btn");
-const nextBtn = document.querySelector(".next-btn");
+const quizBtn = document.querySelector(".next-btn");
 const homeBtn = document.querySelectorAll(".home-btn");
 
 const questionBoard = document.getElementById("question");
@@ -12,10 +12,6 @@ const usersAnswer = document.querySelectorAll(".answer");
 let currentUserAnswer = null;
 let currentCorrectAnswer = null;
 
-let gameState = {
-  score: 0,
-  questionCounter: 1
-};
 let selectedQuestions = [];
 const alphabet = ["A", "B", "C", "D"];
 
@@ -108,55 +104,44 @@ const getRandomObject = (arr) => {
 const randomGenerator = () => {
   const data = getRandomObject(questions);
   console.log(data);
-  questionBoard.textContent = `Q${gameState.questionCounter}. ${data.question}`;
+  questionBoard.textContent = data.question;
   currentCorrectAnswer = data.answer;
   usersAnswer.forEach((answer, index) => {
     answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
   });
   currentUserAnswer = null;
   clearAll()
-  gameState.questionCounter++
-  nextBtn.disabled = true;
-  setDisabledStateForQuizAnswers(false)
-  console.log(  gameState.questionCounter )
 }
 
 //checks to see if the answer selected is correct and renders the colour green or red
 const onAnswerSelected = (e, selectedIndex) => {
+  console.log("***", e)
   currentUserAnswer = selectedIndex ;
   const isCorrect = currentUserAnswer === currentCorrectAnswer;
   if (isCorrect) {
     console.log("correct")
-    e.currentTarget.classList.toggle('correct')
-    gameState.score++
+    e.target.classList.toggle('correct')
   } else {
-    e.currentTarget.classList.toggle('wrong')
-  }
-  nextBtn.disabled = false;
-  setDisabledStateForQuizAnswers(true);
-}
-
-const setDisabledStateForQuizAnswers = (disabled) => {
-  for (let index = 0; index < btnChoices.length; index++) {
-    const btnChoice = btnChoices[index];
-    btnChoice.disabled = disabled;
+    e.target.classList.toggle('wrong')
   }
 }
-//button choices = [element, element, element, element,...]
-for (let index = 0; index < btnChoices.length; index++) {
-  const btnChoice = btnChoices[index];
-  btnChoice.onclick = (e) => onAnswerSelected(e, index)
+//div choices = [element, element, element, element,...]
+for (let index = 0; index < divChoices.length; index++) {
+  const divChoice = divChoices[index];
+  console.log(index, divChoice)
+  divChoice.addEventListener("click", (e) => onAnswerSelected(e, index))
 }
 
-const resetAnswersOnBtn = (btn) => {
-  btn.classList.remove('correct')
-  btn.classList.remove('wrong')
+const resetAnswersOnDiv = (div) => {
+  div.classList.remove('correct')
+  div.classList.remove('wrong')
 }
 
-const clearAll = () => {  
-  for (let index = 0; index < btnChoices.length; index++) {
-    const btnChoice = btnChoices[index];
-    resetAnswersOnBtn(btnChoice)
+const clearAll = () => {
+  console.log("hi")
+  for (let index = 0; index < divChoices.length; index++) {
+    const divChoice = divChoices[index];
+    resetAnswersOnDiv(divChoice.children[0])
   }
 }
 
@@ -192,7 +177,7 @@ const displaySection = (btnType) => {
 // Event listeners that calls the respected functions when triggered. 
 playBtn.addEventListener("click", () => displaySection("play"));
 
-nextBtn.addEventListener("click", () => displaySection("quiz"))
+quizBtn.addEventListener("click", () => displaySection("quiz"))
 
 for (btn of homeBtn) {
   btn.addEventListener("click", function() {
