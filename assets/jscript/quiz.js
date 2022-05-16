@@ -1,14 +1,15 @@
-// declaring global variables by targeting sections and button
-const home = document.getElementById("home");
-const quiz = document.getElementById("quiz");
-const results = document.getElementById("resultsBoard");
-const btnChoices = document.querySelectorAll("button.choices")
-const playBtn = document.querySelector(".play-btn");
-const nextBtn = document.querySelector(".next-btn");
-const homeBtn = document.querySelectorAll(".home-btn");
+// declaring global variables by targeting sections and buttons
+const HOME = document.getElementById("home");
+const QUIZ = document.getElementById("quiz");
+const RESULTS = document.getElementById("resultsBoard");
+const BTN_CHOICES = document.querySelectorAll("button.choices")
+const PROGRESS = document.getElementById("progress")
+const PLAY_BTN = document.querySelector(".play-btn");
+const NEXT_BTN = document.querySelector(".next-btn");
+const HOME_BTN = document.querySelector(".home-btn");
 
-const questionBoard = document.getElementById("question");
-const usersAnswer = document.querySelectorAll(".answer");
+const QUESTION_BOARD = document.getElementById("question");
+const USER_ANSWER = document.querySelectorAll(".answer");
 let currentUserAnswer = null;
 let currentCorrectAnswer = null;
 
@@ -16,8 +17,9 @@ let gameState = {
   score: 0,
   questionCounter: 1
 };
+
 let selectedQuestions = [];
-const alphabet = ["A", "B", "C", "D"];
+const ALPHABET = ["A", "B", "C", "D"];
 
 //===================================Questions data bank================================================
 //quiz questions, choice of answers and correct answer in an array of objects
@@ -83,12 +85,14 @@ const questions = [
   }
 ];
 
+const MAX_QUESTION = questions.length
+console.log(`${gameState.questionCounter} of ${MAX_QUESTION}`)
 
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
-  home.classList.remove('hidden');
-  quiz.classList.add('hidden');
-  results.classList.add('hidden');
+  HOME.classList.remove("hidden");
+  QUIZ.classList.add("hidden");
+  RESULTS.classList.add("hidden");
 }
 
 //creates random index between 0 and the length of any array passed into it
@@ -96,66 +100,70 @@ const getRandomIndex = arr => Math.floor(Math.random() * arr.length);
 
 //uses getRandomIndex to generate select a random object from and array. Also checks to see if the random object has been selected, if not, pushes the question to the empty selectedQuestions array and if selected, loops through its own function with a recursion by calling itself until it finds a question that has not already been pushed to the selectedQuestions array.
 const getRandomObject = (arr) => {
-  const random = getRandomIndex(arr);
-  if (selectedQuestions.includes(random)) {
+  const RANDOM = getRandomIndex(arr);
+  if (selectedQuestions.includes(RANDOM)) {
     getRandomObject(arr);
   }
-  selectedQuestions.push(random);
-  return arr[random];
+  selectedQuestions.push(RANDOM);
+  return arr[RANDOM];
 }
 
 //renders the selected array and questions in the correct section of the quiz board.
 const randomGenerator = () => {
-  const data = getRandomObject(questions);
-  console.log(data);
-  questionBoard.textContent = `Q${gameState.questionCounter}. ${data.question}`;
-  currentCorrectAnswer = data.answer;
-  usersAnswer.forEach((answer, index) => {
-    answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
+  const DATA = getRandomObject(questions);
+  PROGRESS.textContent = `Question ${gameState.questionCounter} of ${MAX_QUESTION}`
+  QUESTION_BOARD.textContent = `Q${gameState.questionCounter}. ${DATA.question}`;
+  currentCorrectAnswer = DATA.answer;
+  USER_ANSWER.forEach((answer, index) => {
+    answer.innerHTML = `${ALPHABET[index]}. ${DATA.choices[index]}`;
   });
   currentUserAnswer = null;
   clearAll()
   gameState.questionCounter++
-  nextBtn.disabled = true;
+  NEXT_BTN.disabled = true;
   setDisabledStateForQuizAnswers(false)
-  console.log(  gameState.questionCounter )
+  console.log(gameState.questionCounter )
 }
 
 //checks to see if the answer selected is correct and renders the colour green or red
 const onAnswerSelected = (e, selectedIndex) => {
-  currentUserAnswer = selectedIndex ;
+  currentUserAnswer = selectedIndex;
   const isCorrect = currentUserAnswer === currentCorrectAnswer;
   if (isCorrect) {
     console.log("correct")
-    e.currentTarget.classList.toggle('correct')
+    e.currentTarget.classList.toggle("correct")
     gameState.score++
   } else {
-    e.currentTarget.classList.toggle('wrong')
+    e.currentTarget.classList.toggle("wrong")
   }
-  nextBtn.disabled = false;
+  NEXT_BTN.disabled = false;
   setDisabledStateForQuizAnswers(true);
 }
 
+
 const setDisabledStateForQuizAnswers = (disabled) => {
-  for (let index = 0; index < btnChoices.length; index++) {
-    const btnChoice = btnChoices[index];
+  for (let index = 0; index < BTN_CHOICES.length; index++) {
+    const btnChoice = BTN_CHOICES[index];
     btnChoice.disabled = disabled;
   }
 }
+
 //button choices = [element, element, element, element,...]
-for (let index = 0; index < btnChoices.length; index++) {
-  const btnChoice = btnChoices[index];
+for (let index = 0; index < BTN_CHOICES.length; index++) {
+  const btnChoice = BTN_CHOICES[index];
   btnChoice.onclick = (e) => onAnswerSelected(e, index)
 }
 
+
+
 const resetAnswersOnBtn = (btn) => {
-  btn.classList.remove('correct')
-  btn.classList.remove('wrong')
+  btn.classList.remove("correct")
+  btn.classList.remove("wrong")
 }
 
 const clearAll = () => {  
-  for (let index = 0; index < btnChoices.length; index++) {
-    const btnChoice = btnChoices[index];
+  for (let index = 0; index < BTN_CHOICES.length; index++) {
+    const btnChoice = BTN_CHOICES[index];
     resetAnswersOnBtn(btnChoice)
   }
 }
@@ -163,18 +171,18 @@ const clearAll = () => {
 // create function that checks if a question has been answered before moving to the next question
 // When called hides the home and results section and shows the quiz section in the browser.
 const playQuiz = () => {
-  home.classList.add('hidden');
-  quiz.classList.remove('hidden');
-  results.classList.add('hidden');
+  HOME.classList.add("hidden");
+  QUIZ.classList.remove("hidden");
+  RESULTS.classList.add("hidden");
   // validateUsername();
   randomGenerator();  
 }
 
 // When called hides the home and quiz section and shows the result section in the browser.
 const getResults = () => {
-  home.classList.add('hidden')
-  quiz.classList.add('hidden')
-  results.classList.remove('hidden')
+  HOME.classList.add("hidden")
+  QUIZ.classList.add("hidden")
+  RESULTS.classList.remove("hidden")
 }
 
 // This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
@@ -190,12 +198,9 @@ const displaySection = (btnType) => {
 }
 
 // Event listeners that calls the respected functions when triggered. 
-playBtn.addEventListener("click", () => displaySection("play"));
+PLAY_BTN.addEventListener("click", () => displaySection("play"));
 
-nextBtn.addEventListener("click", () => displaySection("quiz"))
+NEXT_BTN.addEventListener("click", () => displaySection("quiz"));
 
-for (btn of homeBtn) {
-  btn.addEventListener("click", function() {
-    displaySection("result")
-  })
-}
+HOME_BTN.addEventListener("click", () => displaySection("result"));
+
