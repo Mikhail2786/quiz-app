@@ -140,7 +140,7 @@ const onAnswerSelected = (e, selectedIndex) => {
   setDisabledStateForQuizAnswers(true);
 }
 
-
+//once one of the four choices has been selected, setDisabledStateForQuizAnswers function loops through all buttons to disables all the remaining choices choices.
 const setDisabledStateForQuizAnswers = (disabled) => {
   for (let index = 0; index < BTN_CHOICES.length; index++) {
     const btnChoice = BTN_CHOICES[index];
@@ -155,12 +155,13 @@ for (let index = 0; index < BTN_CHOICES.length; index++) {
 }
 
 
-
+//removes the wrong or correct class
 const resetAnswersOnBtn = (btn) => {
   btn.classList.remove("correct")
   btn.classList.remove("wrong")
 }
 
+//loops through the the buttons which then calls the resetAnswersOnBtn function to then remove the wrong or correct class when the user advances to the next question
 const clearAll = () => {  
   for (let index = 0; index < BTN_CHOICES.length; index++) {
     const btnChoice = BTN_CHOICES[index];
