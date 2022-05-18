@@ -85,9 +85,21 @@ const questions = [
   }
 ];
 
-const MAX_QUESTION = questions.length
-console.log(`${gameState.questionCounter} of ${MAX_QUESTION}`)
+const MAX_QUESTION = questions.length;
+console.log(`${gameState.questionCounter} of ${MAX_QUESTION}`);
 
+
+const USER_NAME = document.getElementById("username");
+const REG = /^[a-z\d]{3,10}$/;
+
+const userNameValidation = (userName, regex) => {
+  console.log(regex.test(userName.value))
+
+}
+
+USER_NAME.addEventListener("keyup", (e) => {
+  userNameValidation(e.target.rvalue)
+})
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
   HOME.classList.remove("hidden");
@@ -121,20 +133,21 @@ const randomGenerator = () => {
   clearAll()
   gameState.questionCounter++
   NEXT_BTN.disabled = true;
-  setDisabledStateForQuizAnswers(false)
-  console.log(gameState.questionCounter )
+  setDisabledStateForQuizAnswers(false);
+  console.log(gameState.questionCounter);
+  displaySection("quiz");
 }
 
 //checks to see if the answer selected is correct and renders the colour green or red
 const onAnswerSelected = (e, selectedIndex) => {
-  currentUserAnswer = selectedIndex;
+  currentUserAnswer = selectedIndex ;
   const isCorrect = currentUserAnswer === currentCorrectAnswer;
   if (isCorrect) {
     console.log("correct")
-    e.currentTarget.classList.toggle("correct")
-    gameState.score++
+    e.currentTarget.classList.toggle('correct');
+    gameState.score++;
   } else {
-    e.currentTarget.classList.toggle("wrong")
+    e.currentTarget.classList.toggle('wrong');
   }
   NEXT_BTN.disabled = false;
   setDisabledStateForQuizAnswers(true);
@@ -201,7 +214,7 @@ const displaySection = (btnType) => {
 // Event listeners that calls the respected functions when triggered. 
 PLAY_BTN.addEventListener("click", () => displaySection("play"));
 
-NEXT_BTN.addEventListener("click", () => displaySection("quiz"));
+NEXT_BTN.addEventListener("click", () => randomGenerator());
 
 HOME_BTN.addEventListener("click", () => displaySection("result"));
 
