@@ -97,12 +97,13 @@ const userNameValidation = (value) => {
   const TEST = REGEX.test(value);
   console.log(value, TEST)
   if (TEST) {
-    USER_NAME_INPUT.classList.add("valid"); 
+    USER_NAME_INPUT.style.border = "2px solid green"; 
     PLAY_BTN.disabled = false;    
   }
   else if (!TEST) {
+    USER_NAME_INPUT.style.border = "2px solid red";
     PLAY_BTN.disabled = true;
-    USER_NAME_INPUT.classList.add("invalid");
+    
   }
 }
 
