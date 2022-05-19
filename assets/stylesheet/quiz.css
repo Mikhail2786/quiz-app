@@ -22,9 +22,17 @@ body {
 }
 
 /* main */
-/* .hidden {
+.hidden {
   display: none;
-}  */
+} 
+
+input.invalid{
+  border: 2px solid red;
+}
+
+input.valid{
+  border: 2px solid green;
+}
 
 .btn {
   background-color: #e1b13c;

@@ -88,18 +88,28 @@ const questions = [
 const MAX_QUESTION = questions.length;
 console.log(`${gameState.questionCounter} of ${MAX_QUESTION}`);
 
+const USER_NAME_INPUT = document.getElementById("username");
+const REGEX = /^[a-z\d]{3,20}$/i;
+PLAY_BTN.disabled = true;
 
-const USER_NAME = document.getElementById("username");
-const REG = /^[a-z\d]{3,10}$/;
-
-const userNameValidation = (userName, regex) => {
-  console.log(regex.test(userName.value))
-
+// Validates the username by testing it against the regex pattern
+const userNameValidation = (value) => {
+  const TEST = REGEX.test(value);
+  console.log(value, TEST)
+  if (TEST) {
+    USER_NAME_INPUT.classList.add("valid"); 
+    PLAY_BTN.disabled = false;    
+  }
+  else if (!TEST) {
+    PLAY_BTN.disabled = true;
+    USER_NAME_INPUT.classList.add("invalid");
+  }
 }
 
-USER_NAME.addEventListener("keyup", (e) => {
-  userNameValidation(e.target.rvalue)
+USER_NAME_INPUT.addEventListener("input", (e) => {
+  userNameValidation(e.target.value)
 })
+
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
   HOME.classList.remove("hidden");
@@ -129,13 +139,15 @@ const randomGenerator = () => {
   USER_ANSWER.forEach((answer, index) => {
     answer.innerHTML = `${ALPHABET[index]}. ${DATA.choices[index]}`;
   });
+
   currentUserAnswer = null;
   clearAll()
+
   gameState.questionCounter++
   NEXT_BTN.disabled = true;
+
   setDisabledStateForQuizAnswers(false);
   console.log(gameState.questionCounter);
-  displaySection("quiz");
 }
 
 //checks to see if the answer selected is correct and renders the colour green or red
@@ -149,6 +161,7 @@ const onAnswerSelected = (e, selectedIndex) => {
   } else {
     e.currentTarget.classList.toggle('wrong');
   }
+
   NEXT_BTN.disabled = false;
   setDisabledStateForQuizAnswers(true);
 }
@@ -205,6 +218,7 @@ const displaySection = (btnType) => {
     playQuiz()
     console.log("show quiz")
   } else if (btnType === "next") {
+    getResults()
     console.log("next")
   } else {
     console.log("result")
@@ -214,7 +228,8 @@ const displaySection = (btnType) => {
 // Event listeners that calls the respected functions when triggered. 
 PLAY_BTN.addEventListener("click", () => displaySection("play"));
 
-NEXT_BTN.addEventListener("click", () => randomGenerator());
+NEXT_BTN.addEventListener("click", () => randomGenerator);
+NEXT_BTN.addEventListener("click", () => displaySection("next"));
 
 HOME_BTN.addEventListener("click", () => displaySection("result"));
 
