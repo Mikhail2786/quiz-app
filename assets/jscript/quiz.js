@@ -1,15 +1,15 @@
 // declaring global variables by targeting sections and buttons
-const HOME = document.getElementById("home");
-const QUIZ = document.getElementById("quiz");
-const RESULTS = document.getElementById("resultsBoard");
-const BTN_CHOICES = document.querySelectorAll("button.choices")
-const PROGRESS = document.getElementById("progress")
-const PLAY_BTN = document.querySelector(".play-btn");
-const NEXT_BTN = document.querySelector(".next-btn");
-const HOME_BTN = document.querySelector(".home-btn");
+const home = document.getElementById("home");
+const quiz = document.getElementById("quiz");
+const results = document.getElementById("resultsBoard");
+const btnChoices = document.querySelectorAll("button.choices")
+const progress = document.getElementById("progress")
+const playBtn = document.querySelector(".play-btn");
+const nextBtn = document.querySelector(".next-btn");
+const homeBtn = document.querySelector(".home-btn");
 
-const QUESTION_BOARD = document.getElementById("question");
-const USER_ANSWER = document.querySelectorAll(".answer");
+const questionBoard = document.getElementById("question");
+const userAnswer = document.querySelectorAll(".answer");
 let currentUserAnswer = null;
 let currentCorrectAnswer = null;
 
@@ -19,7 +19,7 @@ let gameState = {
 };
 
 let selectedQuestions = [];
-const ALPHABET = ["A", "B", "C", "D"];
+const alphabet = ["A", "B", "C", "D"];
 
 //===================================Questions data bank================================================
 //quiz questions, choice of answers and correct answer in an array of objects
@@ -68,7 +68,7 @@ const questions = [
 
   {
     question: "What is the Name of of J Coles second album?",
-    choices: ["Cole World: The Sideline Story", "Forest Hills Drive", "Friday Night lights", "Born Sinner,"],
+    choices: ["Cole World: The Sideline Story", "Forest Hills Drive", "Friday Night lights", "Born Sinner"],
     answer: 3
   },
 
@@ -80,42 +80,67 @@ const questions = [
 
   {
     question: "Where drill music originate from?", 
-    choices: ["Ney York", "London", "Paris", "Chicago"],
+    choices: ["New York", "London", "Paris", "Chicago"],
     answer: 3
+  },
+  {
+    question: "What is the name of the collective Future started with?", 
+    choices: ["Native Tongue’s", "The Dungeon Family", "Rich Gang", "Digital Underground"],
+    answer: 1
+  },
+  {
+    question: "What is Nipsey Hussle’s slogan?", 
+    choices: ["The marathon keeps going", "The marathon Doesn’t stops", "The marathon continues", "The marathon forever"],
+    answer: 2
+  },
+  {
+    question: "Hip Hop’s founding father is Dj Kool Hurc, but which country was he born?", 
+    choices: ["The United States Of America", "England", "Nigeria", "Jamaica"],
+    answer: 3
+  },
+  {
+    question: "Giggs undoubtedly made the biggest uk hip hop song with “Talking the hardest”, but who made the original song?", 
+    choices: ["Stat Quo", "Bank Roll Fresh", "Rich Boy", "Shawty Low"],
+    answer: 0
+  },
+  {
+    question: "What is the name of UK rapper Dave’s debut album?", 
+    choices: ["Psychodrama", "We’re All Alone In This Together", "Survival", "Game Over "],
+    answer: 0
   }
 ];
 
-const MAX_QUESTION = questions.length;
-console.log(`${gameState.questionCounter} of ${MAX_QUESTION}`);
+const maxQuestion = questions.length;
+console.log(`${gameState.questionCounter} of ${maxQuestion}`);
 
-const USER_NAME_INPUT = document.getElementById("username");
-const REGEX = /^[a-z\d]{3,20}$/i;
-PLAY_BTN.disabled = true;
+const userNameInput = document.getElementById("username");
+const regex = /^[a-z\d]{3,20}$/i;
+playBtn.disabled = true;
 
 // Validates the username by testing it against the regex pattern
 const userNameValidation = (value) => {
-  const TEST = REGEX.test(value);
-  console.log(value, TEST)
-  if (TEST) {
-    USER_NAME_INPUT.style.border = "2px solid green"; 
-    PLAY_BTN.disabled = false;    
+  const test = regex.test(value);
+  console.log(value, test)
+  if (test) {
+    userNameInput.style.border = "2px solid green"; 
+    playBtn.disabled = false;    
   }
-  else if (!TEST) {
-    USER_NAME_INPUT.style.border = "2px solid red";
-    PLAY_BTN.disabled = true;
+  else if (!test) {
+    userNameInput.style.border = "2px solid red";
+    playBtn.disabled = true;
     
   }
 }
 
-USER_NAME_INPUT.addEventListener("input", (e) => {
+userNameInput.addEventListener("input", (e) => {
   userNameValidation(e.target.value)
 })
 
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
-  HOME.classList.remove("hidden");
-  QUIZ.classList.add("hidden");
-  RESULTS.classList.add("hidden");
+  home.classList.remove("hidden");
+  quiz.classList.add("hidden");
+  results.classList.add("hidden");
 }
 
 //creates random index between 0 and the length of any array passed into it
@@ -123,32 +148,32 @@ const getRandomIndex = arr => Math.floor(Math.random() * arr.length);
 
 //uses getRandomIndex to generate select a random object from and array. Also checks to see if the random object has been selected, if not, pushes the question to the empty selectedQuestions array and if selected, loops through its own function with a recursion by calling itself until it finds a question that has not already been pushed to the selectedQuestions array.
 const getRandomObject = (arr) => {
-  const RANDOM = getRandomIndex(arr);
-  if (selectedQuestions.includes(RANDOM)) {
+  const random = getRandomIndex(arr);
+  if (selectedQuestions.includes(random)) {
     getRandomObject(arr);
   }
-  selectedQuestions.push(RANDOM);
-  return arr[RANDOM];
+  selectedQuestions.push(random);
+  return arr[random];
 }
 
 //renders the selected array and questions in the correct section of the quiz board.
 const randomGenerator = () => {
-  const DATA = getRandomObject(questions);
-  PROGRESS.textContent = `Question ${gameState.questionCounter} of ${MAX_QUESTION}`
-  QUESTION_BOARD.textContent = `Q${gameState.questionCounter}. ${DATA.question}`;
-  currentCorrectAnswer = DATA.answer;
-  USER_ANSWER.forEach((answer, index) => {
-    answer.innerHTML = `${ALPHABET[index]}. ${DATA.choices[index]}`;
+  const data = getRandomObject(questions);
+  progress.textContent = `Question ${gameState.questionCounter} of ${maxQuestion}`
+  questionBoard.textContent = `Q${gameState.questionCounter}. ${data.question}`;
+  currentCorrectAnswer = data.answer;
+  userAnswer.forEach((answer, index) => {
+    answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
   });
 
   currentUserAnswer = null;
   clearAll()
 
   gameState.questionCounter++
-  NEXT_BTN.disabled = true;
+  nextBtn.disabled = true;
 
   setDisabledStateForQuizAnswers(false);
-  console.log(gameState.questionCounter);
+  // console.log(gameState.questionCounter);
 }
 
 //checks to see if the answer selected is correct and renders the colour green or red
@@ -159,25 +184,26 @@ const onAnswerSelected = (e, selectedIndex) => {
     console.log("correct")
     e.currentTarget.classList.toggle('correct');
     gameState.score++;
+    console.log(gameState.score)
   } else {
     e.currentTarget.classList.toggle('wrong');
   }
 
-  NEXT_BTN.disabled = false;
+  nextBtn.disabled = false;
   setDisabledStateForQuizAnswers(true);
 }
 
 //once one of the four choices has been selected, setDisabledStateForQuizAnswers function loops through all buttons to disables all the remaining choices choices.
 const setDisabledStateForQuizAnswers = (disabled) => {
-  for (let index = 0; index < BTN_CHOICES.length; index++) {
-    const btnChoice = BTN_CHOICES[index];
+  for (let index = 0; index < btnChoices.length; index++) {
+    const btnChoice = btnChoices[index];
     btnChoice.disabled = disabled;
   }
 }
 
 //button choices = [element, element, element, element,...]
-for (let index = 0; index < BTN_CHOICES.length; index++) {
-  const btnChoice = BTN_CHOICES[index];
+for (let index = 0; index < btnChoices.length; index++) {
+  const btnChoice = btnChoices[index];
   btnChoice.onclick = (e) => onAnswerSelected(e, index)
 }
 
@@ -190,28 +216,28 @@ const resetAnswersOnBtn = (btn) => {
 
 //loops through the the buttons which then calls the resetAnswersOnBtn function to then remove the wrong or correct class when the user advances to the next question
 const clearAll = () => {  
-  for (let index = 0; index < BTN_CHOICES.length; index++) {
-    const btnChoice = BTN_CHOICES[index];
+  for (let index = 0; index < btnChoices.length; index++) {
+    const btnChoice = btnChoices[index];
     resetAnswersOnBtn(btnChoice)
   }
 }
 
 // create function that checks if a question has been answered before moving to the next question
-// When called hides the home and results section and shows the quiz section in the browser.
+// When called hides the home and  section and shows the quiz section in the browser.
 const playQuiz = () => {
-  HOME.classList.add("hidden");
-  QUIZ.classList.remove("hidden");
-  RESULTS.classList.add("hidden");
-  // validateUsername();
+  home.classList.add("hidden");
+  quiz.classList.remove("hidden");
+  results.classList.add("hidden");
   randomGenerator();  
 }
 
 // When called hides the home and quiz section and shows the result section in the browser.
 const getResults = () => {
-  HOME.classList.add("hidden")
-  QUIZ.classList.add("hidden")
-  RESULTS.classList.remove("hidden")
+  home.classList.add("hidden")
+  quiz.classList.add("hidden")
+  results.classList.remove("hidden")
 }
+
 
 // This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
 const displaySection = (btnType) => {
@@ -219,18 +245,21 @@ const displaySection = (btnType) => {
     playQuiz()
     console.log("show quiz")
   } else if (btnType === "next") {
-    getResults()
+    getRandomObject()
     console.log("next")
-  } else {
-    console.log("result")
+  } else if (btnType === "home"){
+    startGame()
+    console.log("home")
   }
 }
 
 // Event listeners that calls the respected functions when triggered. 
-PLAY_BTN.addEventListener("click", () => displaySection("play"));
+playBtn.addEventListener("click", () => displaySection("play"));
 
-NEXT_BTN.addEventListener("click", () => randomGenerator);
-NEXT_BTN.addEventListener("click", () => displaySection("next"));
+// nextBtn.addEventListener("click", () => displaySection("next"));
 
-HOME_BTN.addEventListener("click", () => displaySection("result"));
+nextBtn.addEventListener("click", () => randomGenerator("next"));
 
+homeBtn.addEventListener("click", () => displaySection("home"));
+
+// console.log(randomG)
