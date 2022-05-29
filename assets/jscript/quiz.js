@@ -132,10 +132,6 @@ const userNameValidation = (value) => {
   }
 }
 
-userNameInput.addEventListener("input", (e) => {
-  userNameValidation(e.target.value)
-})
-
 // When called hides the quiz and results section and shows the home section in the browser.
 const startGame = () => {
   home.classList.remove("hidden");
@@ -239,6 +235,8 @@ playBtn.addEventListener("click", () => displaySection("play"));
 nextBtn.addEventListener("click", () => randomGenerator("next"));
 
 homeBtn.addEventListener("click", () => displaySection("home"));
+
+userNameInput.addEventListener("input", (e) =>  userNameValidation(e.target.value))
 
 
 //Lodash Shuffle copied from lodash github
