@@ -7,6 +7,7 @@ const progress = document.getElementById("progress")
 const playBtn = document.querySelector(".play-btn");
 const nextBtn = document.querySelector(".next-btn");
 const homeBtn = document.querySelector(".home-btn");
+const finalScore = document.getElementById("final-score");
 
 const questionBoard = document.getElementById("question");
 const userAnswer = document.querySelectorAll(".answer");
@@ -111,7 +112,6 @@ const questions = [
 
 const shuffledQuestions = shuffle(questions); 
 const maxQuestion = questions.length;
-console.log(`${gameState.questionCounter} of ${maxQuestion}`);
 
 const userNameInput = document.getElementById("username");
 const regex = /^[a-z\d]{3,20}$/i;
@@ -120,7 +120,6 @@ playBtn.disabled = true;
 // Validates the username by testing it against the regex pattern
 const userNameValidation = (value) => {
   const test = regex.test(value);
-  console.log("****:", value, test)
   if (test) {
     userNameInput.style.border = "2px solid green"; 
     playBtn.disabled = false;    
@@ -142,10 +141,12 @@ const startGame = () => {
 //renders the selected array and questions in the correct section of the quiz board.
 const randomGenerator = () => {
   if (gameState.questionCounter === shuffledQuestions.length) return getResults();
+
   const data = shuffledQuestions[gameState.questionCounter]
   progress.textContent = `Question ${gameState.questionCounter+1} of ${maxQuestion}`
   questionBoard.textContent = `Q${gameState.questionCounter+1}. ${data.question}`;
   currentCorrectAnswer = data.answer;
+
   userAnswer.forEach((answer, index) => {
     answer.innerHTML = `${alphabet[index]}. ${data.choices[index]}`;
   });
@@ -164,12 +165,10 @@ const onAnswerSelected = (e, selectedIndex) => {
   currentUserAnswer = selectedIndex;
   const isCorrect = currentUserAnswer === currentCorrectAnswer;
   if (isCorrect) {
-    console.log("correct")
     e.currentTarget.classList.toggle("correct");
     gameState.score++;
-    console.log(gameState.score)
-  } else {
-    console.log("wrong")
+  } 
+  else {
     e.currentTarget.classList.toggle("wrong");
   }
 
@@ -188,14 +187,14 @@ const setDisabledStateForQuizAnswers = (disabled) => {
 //button choices = [element, element, element, element,...]
 for (let index = 0; index < btnChoices.length; index++) {
   const btnChoice = btnChoices[index];
-  btnChoice.onclick = (e) => onAnswerSelected(e, index)
+  btnChoice.onclick = (e) => onAnswerSelected(e, index);
 }
 
 
 //removes the wrong or correct class
 const resetAnswersOnBtn = (btn) => {
-  btn.classList.remove("correct")
-  btn.classList.remove("wrong")
+  btn.classList.remove("correct");
+  btn.classList.remove("wrong");
 }
 
 //loops through the the buttons which then calls the resetAnswersOnBtn function to then remove the wrong or correct class when the user advances to the next question
@@ -206,15 +205,25 @@ const clearAll = () => {
   }
 }
 
+//rending the users username and score
 const showScore = () => {
-  if (gameState.score < 5) {
-    console.log(`Wack!!! ${userNameInput.value}, you only scored ${gameState.score} out of ${maxQuestion}. i know you can do better. Try again!!`)
-  } else if (gameState.score > 10) {
-    console.log(`You smahesd it ${userNameInput.value}!!! You scored ${gameState.score} out of ${maxQuestion}. Ask you friends if they can do better.`)
-  } else {
-    console.log(`You done aite ${userNameInput.value}. You scored ${gameState.score} out of ${maxQuestion}, You can do better, try again.`)
+  const scoreMsg = document.createElement("p");
+
+  if (gameState.score <= 5) {
+    scoreMsg.innerText =`${userNameInput.value}, you only scored ${gameState.score} out of ${maxQuestion}. That's wack!!!! I know you can do better. Try again!!`;
+
+    finalScore.append(scoreMsg);
+  } 
+  else if (gameState.score >= 10) {
+    scoreMsg.innerText = `You smahesd it ${userNameInput.value}!!! You scored ${gameState.score} out of ${maxQuestion}. Ask you friends if they can do better.`;
+
+    finalScore.append(scoreMsg);
+  } 
+  else {
+    scoreMsg.innerText = `You done aite ${userNameInput.value}. You scored ${gameState.score} out of ${maxQuestion}, You can do better, try again.`;
+
+    finalScore.append(scoreMsg);
   }
-  console.log(`your score is ${gameState.score}`)
   //store div with id="final-score" in a variable called finalScore (use getElementByID)
   //1.create score message starting with an empty string
 }
@@ -228,16 +237,16 @@ const playQuiz = () => {
 
 // When called hides the home and quiz section and shows the result section in the browser.
 const getResults = () => {
-  home.classList.add("hidden")
-  quiz.classList.add("hidden")
-  results.classList.remove("hidden")
+  home.classList.add("hidden");
+  quiz.classList.add("hidden");
+  results.classList.remove("hidden");
   showScore();
 }
 
 // This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
 const displaySection = (btnType) => {
-  if (btnType === "play") return playQuiz()
-  if (btnType === "home") return startGame()
+  if (btnType === "play") return playQuiz();
+  if (btnType === "home") return startGame();
   }
 
 
@@ -248,34 +257,34 @@ nextBtn.addEventListener("click", () => randomGenerator("next"));
 
 homeBtn.addEventListener("click", () => displaySection("home"));
 
-userNameInput.addEventListener("input", (e) =>  userNameValidation(e.target.value))
+userNameInput.addEventListener("input", (e) =>  userNameValidation(e.target.value));
 
 
 //Lodash Shuffle copied from lodash github
 function shuffle(array) {
-  const length = array == null ? 0 : array.length
+  const length = array == null ? 0 : array.length;
   if (!length) {
-    return []
+    return [];
   }
-  let index = -1
-  const lastIndex = length - 1
-  const result = copyArray(array)
+  let index = -1;
+  const lastIndex = length - 1;
+  const result = copyArray(array);
   while (++index < length) {
-    const rand = index + Math.floor(Math.random() * (lastIndex - index + 1))
-    const value = result[rand]
-    result[rand] = result[index]
-    result[index] = value
+    const rand = index + Math.floor(Math.random() * (lastIndex - index + 1));
+    const value = result[rand];
+    result[rand] = result[index];
+    result[index] = value;
   }
-  return result
+  return result;
 }
 
 function copyArray(source, array) {
-  let index = -1
-  const length = source.length
+  let index = -1;
+  const length = source.length;
 
-  array || (array = new Array(length))
+  array || (array = new Array(length));
   while (++index < length) {
-    array[index] = source[index]
+    array[index] = source[index];
   }
-  return array
+  return array;
 }
