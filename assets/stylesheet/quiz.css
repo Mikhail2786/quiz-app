@@ -13,6 +13,7 @@ body {
   flex-direction: column;
   background-color: #141414d3;
   min-height: 100vh;
+  letter-spacing: 2px;
 }
 
 /* header */
@@ -21,10 +22,33 @@ body {
   height: 90px;
 }
 
+/*modal*/
+.modal-header, .modal-footer {
+  background-color: #141414d3;
+}
+
+.modal-btn{
+  padding: 10px 20px 10px 20px;
+  letter-spacing: 1px;
+}
+
+#close-btn {
+  color: black;
+  width: 30%;
+}
+
 /* main */
-.hidden {
+/* .hidden {
   display: none;
-} 
+}  */
+
+.main-btn{
+  letter-spacing: 1px;
+}
+
+#rules-btn {
+  margin-top: 10px;
+}
 
 .btn {
   background-color: #e1b13c;
@@ -35,16 +59,20 @@ body {
   max-width: 900px;
 }
 
-.main-section {
+.main-section, .modal-body {
   border: 2px solid #e1b13c;
   background-color: #000;
   opacity: 0.8;
   min-height: 100px;
-  min-width: 400px;
+  min-width: 333px;
 }
 
-/* questions board */
+#uname-section
+{
+  padding: 20px 60px 20px 60px;
+}
 
+/* questions board */ 
 button.choices{
   border: solid 1px #141414d3;
   border-radius: 10px;

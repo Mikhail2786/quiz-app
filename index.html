@@ -28,7 +28,7 @@
             </a>
 
         <!-- Button trigger modal -->
-            <button type="button" class="btn d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#exampleModal" id="rules-btn">
+            <button type="button" class="btn d-flex justify-content-end modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="rules-btn">
               How To Play
             </button>
 
@@ -40,15 +40,15 @@
                     <h5 class="modal-title" id="exampleModalLabel">How To Play</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body main-section">
-                    <ol class="rules">
+                  <div class="modal-body" id="rules">
+                    <ol>
                       <li>Enter your username. Once you have entered your username, you will be able to play the quiz.</li>
                       <li>See how knowledgeable you are by get as many questions right as possibe.</li>
                       <li>Once you have finished the quiz check your results and, if you are not happy, try again.</li>
                     </ol>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn modal-btn" id="close-btn" data-bs-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@
                     </div>
                   </div>
                   <div class="row justify-content-center mt-4">
-                    <button type="button" class="btn play-btn col-4">Play</button>
+                    <button type="button" class="btn play-btn col-4 main-btn">Play</button>
                   </div>
                 </div>
               </div>
@@ -139,7 +139,7 @@
                     </div>
                   </div>
                   <div class="row justify-content-center mt-4">
-                    <button type="button" class="btn next-btn col-4"> Next</button>
+                    <button type="button" class="btn next-btn col-4 main-btn"> Next</button>
                   </div>
                 </div>  
               </div>
@@ -163,7 +163,7 @@
                     <h2 id="results">Result</h2>
                     <div id="final-score">
                     </div>
-                    <button type="submit" class="btn home-btn" id="home-btn">Home</button>
+                    <button type="submit" class="btn home-btn main-btn" id="home-btn">Home</button>
                   </div>
                 </div>
               </div>
