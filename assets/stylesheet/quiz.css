@@ -70,6 +70,10 @@ body {
   padding: 20px 60px 20px 60px;
 }
 
+#score{
+  padding: 15px 15px 15px 15px;
+}
+
 /* questions board */ 
 button.choices{
   border: solid 1px #141414d3;
@@ -97,6 +101,7 @@ button.correct {
 
 #quiz-board {
   padding: 20px;
+  /* margin-bottom: 6rem; */
 }
 
 /* footer */
