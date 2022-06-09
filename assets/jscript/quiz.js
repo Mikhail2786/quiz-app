@@ -13,6 +13,8 @@ const questionBoard = document.getElementById("question");
 const userAnswer = document.querySelectorAll(".answer");
 let currentUserAnswer = null;
 let currentCorrectAnswer = null;
+const renderUsername = document.createElement("p")
+const scoreMsg = document.createElement("p");
 
 let gameState = {
   score: 0,
@@ -207,9 +209,6 @@ const clearAll = () => {
 
 //rending the users username and score
 const showScore = () => {
-  const renderUsername = document.createElement("p")
-  const scoreMsg = document.createElement("p");
-
   if (gameState.score <= 5) {
     renderUsername.innerText = `${userNameInput.value}`;
     scoreMsg.innerText = `You only scored ${gameState.score} out of ${maxQuestion}. That's wack!!!! I know you can do better. Try again!!`;
@@ -246,11 +245,17 @@ const getResults = () => {
 }
 
 const resetQuiz = () => {
+  userNameInput.value = "";
   gameState.score = 0;
   gameState.questionCounter = 0;
   currentUserAnswer = null;
   currentCorrectAnswer = null;
+  renderUsername.innerText = "";
+  scoreMsg.innerText = "";
+  userNameInput.style.border = null; 
+  playBtn.disabled = true; 
   displaySection("home")
+  
 }
 
 // This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
@@ -265,7 +270,10 @@ playBtn.addEventListener("click", () => displaySection("play"));
 
 nextBtn.addEventListener("click", () => randomGenerator("next"));
 
-homeBtn.addEventListener("click", () => displaySection("home"));
+homeBtn.addEventListener("click", () => {
+  displaySection("home")
+  resetQuiz();
+});
 
 userNameInput.addEventListener("input", (e) =>  userNameValidation(e.target.value));
 
