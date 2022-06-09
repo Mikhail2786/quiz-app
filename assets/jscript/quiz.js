@@ -39,7 +39,7 @@ const questions = [
   },
 
   {
-    question: "Ante Up remix was a hit song released in 2000 featuring Busta Rhymes and Remy Martin, but who are the duo who released the song?", 
+    question: "Ante Up remix was a hit song released in 2000 featuring Busta Rhymes and Remy Martin, but which duo released the song?", 
     choices: ["C-N-N", "Mobb Deep", "M.O.P", "Method Man & Re]dman"],
     answer: 2
   },
@@ -69,7 +69,7 @@ const questions = [
   },
 
   {
-    question: "What is the Name of of J Coles second album?",
+    question: "What is the name of of J Coles second album?",
     choices: ["Cole World: The Sideline Story", "Forest Hills Drive", "Friday Night lights", "Born Sinner"],
     answer: 3
   },
@@ -81,7 +81,7 @@ const questions = [
   },
 
   {
-    question: "Where drill music originate from?", 
+    question: "Where does drill music originate from?", 
     choices: ["New York", "London", "Paris", "Chicago"],
     answer: 3
   },
@@ -96,7 +96,7 @@ const questions = [
     answer: 2
   },
   {
-    question: "Hip Hop’s founding father is Dj Kool Hurc, but which country was he born?", 
+    question: "Hip Hop’s founding father is Dj Kool Hurc, but which country was he born in?", 
     choices: ["The United States Of America", "England", "Nigeria", "Jamaica"],
     answer: 3
   },
