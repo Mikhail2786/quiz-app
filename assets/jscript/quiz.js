@@ -244,6 +244,7 @@ const getResults = () => {
   showScore();
 }
 
+//restetting the quiz back to its original state
 const resetQuiz = () => {
   userNameInput.value = "";
   gameState.score = 0;
@@ -255,7 +256,6 @@ const resetQuiz = () => {
   userNameInput.style.border = null; 
   playBtn.disabled = true; 
   displaySection("home")
-  
 }
 
 // This function runs an if statement to determine which of the three functions should be called based on what button is clicked, 
