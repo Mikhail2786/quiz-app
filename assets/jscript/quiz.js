@@ -40,7 +40,7 @@ const questions = [
 
   {
     question: "Ante Up remix was a hit song released in 2000 featuring Busta Rhymes and Remy Martin, but which duo released the song?", 
-    choices: ["C-N-N", "Mobb Deep", "M.O.P", "Method Man & Re]dman"],
+    choices: ["C-N-N", "Mobb Deep", "M.O.P", "Method Man & Redman"],
     answer: 2
   },
 
@@ -86,7 +86,7 @@ const questions = [
     answer: 3
   },
   {
-    question: "What is the name of the collective Future started with?", 
+    question: "What is the name of the collective, Future started with?", 
     choices: ["Native Tongue’s", "The Dungeon Family", "Rich Gang", "Digital Underground"],
     answer: 1
   },
@@ -217,12 +217,12 @@ const showScore = () => {
     finalScore.append(scoreMsg);
   } 
   else if (gameState.score >= 10) {
-    scoreMsg.innerText = `You smahesd it ${userNameInput.value}!!! You scored ${gameState.score} out of ${maxQuestion}. Ask you friends if they can do better.`;
+    scoreMsg.innerText = `You smahesd it ${userNameInput.value}!!! You scored ${gameState.score} out of ${maxQuestion}. Ask your friends if they can do better.`;
 
     finalScore.append(scoreMsg);
   } 
   else {
-    scoreMsg.innerText = `You done aite ${userNameInput.value}. You scored ${gameState.score} out of ${maxQuestion}, You can do better, try again.`;
+    scoreMsg.innerText = `You done aite ${userNameInput.value}. You scored ${gameState.score} out of ${maxQuestion}, but you can do better, try again.`;
 
     finalScore.append(scoreMsg);
   }

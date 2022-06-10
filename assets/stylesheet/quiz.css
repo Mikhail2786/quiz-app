@@ -30,6 +30,7 @@ body {
 .modal-btn{
   padding: 10px 20px 10px 20px;
   letter-spacing: 1px;
+  border: 2px solid black;
 }
 
 #close-btn {
@@ -102,6 +103,7 @@ button.correct {
   padding: 20px;
   /* margin-bottom: 6rem; */
 }
+
 
 /* footer */
 #unique-footer .nav-link:hover {
